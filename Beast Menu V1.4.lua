@@ -183,7 +183,7 @@ OutputValue.Archivable = true
 OutputValue.Value = 0
 
 Hackzao.Name = "Hackzao"
-Hackzao.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+Hackzao.Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
 Hackzao.Enabled = false
 Hackzao.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 Hackzao.DisplayOrder = 100000000
@@ -1502,11 +1502,11 @@ local function MXTL_fake_script() -- Nome.MainScript
 	local script = Instance.new('LocalScript', Nome)
 
 	local frame = script.Parent
-	local player = game.Players.LocalPlayer
+	local player = game:GetService("Players").LocalPlayer
 	local userId = player.UserId
 	local thumbType = Enum.ThumbnailType.AvatarBust
 	local thumbSize = Enum.ThumbnailSize.Size420x420
-	local content, isReady = game.Players:GetUserThumbnailAsync(userId, thumbType, thumbSize)
+	local content, isReady = game:GetService("Players"):GetUserThumbnailAsync(userId, thumbType, thumbSize)
 	
 	frame.PlayerImage.Image = content
 	frame.PlayerName.Text = player.Name
@@ -1573,10 +1573,10 @@ local function ZZLDRDS_fake_script() -- Name.LocalScript
 	
 	-- Função para atualizar as etiquetas dos jogadores
 	local function updatePlayerLabels()
-		local localPlayer = game.Players.LocalPlayer
+		local localPlayer = game:GetService("Players").LocalPlayer
 	
 		-- Cria etiquetas para todos os jogadores no jogo
-		for _, otherPlayer in ipairs(game.Players:GetPlayers()) do
+		for _, otherPlayer in ipairs(game:GetService("Players"):GetPlayers()) do
 			if otherPlayer ~= localPlayer then
 				createPlayerLabel(otherPlayer)
 			end
@@ -1678,7 +1678,7 @@ local function OEPU_fake_script() -- Lines.LocalScript
 		end
 	
 		-- Referência ao jogador local
-		local player = game.Players.LocalPlayer
+		local player = game:GetService("Players").LocalPlayer
 		local playerCharacter = player.Character
 	
 		-- Verifica se o jogador local possui um personagem válido
@@ -1697,7 +1697,7 @@ local function OEPU_fake_script() -- Lines.LocalScript
 		end
 	
 		-- Percorre todos os jogadores no jogo
-		for _, otherPlayer in pairs(game.Players:GetPlayers()) do
+		for _, otherPlayer in pairs(game:GetService("Players"):GetPlayers()) do
 			-- Verifica se o jogador é diferente do jogador local e possui um personagem válido
 			if otherPlayer ~= player and otherPlayer.Character then
 				-- Verifica se já existe uma linha para este jogador
@@ -1794,7 +1794,7 @@ local function WKIJDUU_fake_script() -- Box.LocalScript
 			-- Função para criar ou atualizar o BillboardGui para um jogador específico
 			local function createOrUpdateBillboardForPlayer(player)
 				-- Verifica se o jogador é o LocalPlayer
-				if player == game.Players.LocalPlayer then
+				if player == game:GetService("Players").LocalPlayer then
 					return  -- Não cria BillboardGui para o LocalPlayer
 				end
 	
@@ -1842,7 +1842,7 @@ local function WKIJDUU_fake_script() -- Box.LocalScript
 			-- Função para verificar e criar ou atualizar BillboardGui para todos os jogadores
 			local function createOrUpdateBillboardsForPlayers()
 				-- Obtém todos os jogadores no servidor
-				local players = game.Players:GetPlayers()
+				local players = game:GetService("Players"):GetPlayers()
 	
 				-- Itera sobre cada jogador
 				for _, player in ipairs(players) do
@@ -1855,13 +1855,13 @@ local function WKIJDUU_fake_script() -- Box.LocalScript
 			createOrUpdateBillboardsForPlayers()
 	
 			-- Conecta um manipulador de evento para criar ou atualizar Billboards para novos jogadores que entram
-			game.Players.PlayerAdded:Connect(function(player)
+			game:GetService("Players").PlayerAdded:Connect(function(player)
 				-- Cria ou atualiza o BillboardGui para o novo jogador
 				createOrUpdateBillboardForPlayer(player)
 			end)
 	
 			-- Conecta um manipulador de evento para remover Billboards de jogadores que saem
-			game.Players.PlayerRemoving:Connect(function(player)
+			game:GetService("Players").PlayerRemoving:Connect(function(player)
 				if player.Character then
 					local head = player.Character:FindFirstChild("HumanoidRootPart")
 					if head then
@@ -1898,7 +1898,7 @@ local function WKIJDUU_fake_script() -- Box.LocalScript
 	
 		-- Função para remover todas as BillboardGui para todos os jogadores
 		local function removeAllBillboardsForPlayers()
-			local players = game.Players:GetPlayers()
+			local players = game:GetService("Players"):GetPlayers()
 	
 			for _, player in ipairs(players) do
 				removeBillboardsForPlayer(player)
@@ -1909,7 +1909,7 @@ local function WKIJDUU_fake_script() -- Box.LocalScript
 		removeAllBillboardsForPlayers()
 	
 		-- Conecta um manipulador de evento para remover todas as BillboardGui quando um jogador sai
-		game.Players.PlayerRemoving:Connect(function(player)
+		game:GetService("Players").PlayerRemoving:Connect(function(player)
 			removeAllBillboardsForPlayers()  -- Remove todas as BillboardGui quando um jogador sai
 		end)
 	
@@ -1957,7 +1957,7 @@ local function DFUDO_fake_script() -- HeadESP.LocalScript
 			-- Função para criar ou atualizar o BillboardGui para um jogador específico
 			local function createOrUpdateBillboardForPlayer(player)
 				-- Verifica se o jogador é o LocalPlayer
-				if player == game.Players.LocalPlayer then
+				if player == game:GetService("Players").LocalPlayer then
 					return  -- Não cria BillboardGui para o LocalPlayer
 				end
 	
@@ -2004,7 +2004,7 @@ local function DFUDO_fake_script() -- HeadESP.LocalScript
 			-- Função para verificar e criar ou atualizar BillboardGui para todos os jogadores
 			local function createOrUpdateBillboardsForPlayers()
 				-- Obtém todos os jogadores no servidor
-				local players = game.Players:GetPlayers()
+				local players = game:GetService("Players"):GetPlayers()
 	
 				-- Itera sobre cada jogador
 				for _, player in ipairs(players) do
@@ -2017,13 +2017,13 @@ local function DFUDO_fake_script() -- HeadESP.LocalScript
 			createOrUpdateBillboardsForPlayers()
 	
 			-- Conecta um manipulador de evento para criar ou atualizar Billboards para novos jogadores que entram
-			game.Players.PlayerAdded:Connect(function(player)
+			game:GetService("Players").PlayerAdded:Connect(function(player)
 				-- Cria ou atualiza o BillboardGui para o novo jogador
 				createOrUpdateBillboardForPlayer(player)
 			end)
 	
 			-- Conecta um manipulador de evento para remover Billboards de jogadores que saem
-			game.Players.PlayerRemoving:Connect(function(player)
+			game:GetService("Players").PlayerRemoving:Connect(function(player)
 				if player.Character then
 					local head = player.Character:FindFirstChild("Head")
 					if head then
@@ -2060,7 +2060,7 @@ local function DFUDO_fake_script() -- HeadESP.LocalScript
 	
 		-- Função para remover todas as BillboardGui para todos os jogadores
 		local function removeAllBillboardsForPlayers()
-			local players = game.Players:GetPlayers()
+			local players = game:GetService("Players"):GetPlayers()
 	
 			for _, player in ipairs(players) do
 				removeBillboardsForPlayer(player)
@@ -2071,7 +2071,7 @@ local function DFUDO_fake_script() -- HeadESP.LocalScript
 		removeAllBillboardsForPlayers()
 	
 		-- Conecta um manipulador de evento para remover todas as BillboardGui quando um jogador sai
-		game.Players.PlayerRemoving:Connect(function(player)
+		game:GetService("Players").PlayerRemoving:Connect(function(player)
 			removeAllBillboardsForPlayers()  -- Remove todas as BillboardGui quando um jogador sai
 		end)
 	
@@ -2198,7 +2198,7 @@ local function LIFSHN_fake_script() -- Aimbot.LocalScript
 		if aimbotEnabled.Text == 'on' then
 			aimbotEnabled.Text = 'off'
 			aimbottoggle = false
-			local fovScreenGui = game.Players.LocalPlayer.PlayerGui:FindFirstChild("FOVScreenGui")
+			local fovScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("FOVScreenGui")
 			if fovScreenGui then
 				fovScreenGui:Destroy()
 			end
@@ -2215,7 +2215,7 @@ local function LIFSHN_fake_script() -- Aimbot.LocalScript
 				local fovScreenGui = Instance.new("ScreenGui")
 				fovScreenGui.Name = "FOVScreenGui"
 				fovScreenGui.ResetOnSpawn = false
-				fovScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+				fovScreenGui.Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
 	
 				-- Definir o tamanho do FOV em pixels
 				local function onRenderStep()
@@ -2273,27 +2273,27 @@ local function LIFSHN_fake_script() -- Aimbot.LocalScript
 	
 				-- Função para verificar se um jogador está no mesmo time que o jogador local
 				local function isSameTeam(player)
-					local localPlayer = game.Players.LocalPlayer
+					local localPlayer = game:GetService("Players").LocalPlayer
 					return player.Team == localPlayer.Team
 				end
 	
 				-- Função para encontrar a cabeça do jogador mais próximo dentro do FOV
 				local function findNearestPlayerHeadInFOV()
 					local camera = game.Workspace.CurrentCamera
-					local mouse = game.Players.LocalPlayer:GetMouse()
+					local mouse = game:GetService("Players").LocalPlayer:GetMouse()
 					local mousePosition = Vector2.new(mouse.X, mouse.Y)
 	
 					-- Calcular a posição do centro do FOV
 					local fovCenter = Vector2.new(mousePosition.X, mousePosition.Y)
 	
 					-- Obter o jogador local
-					local localPlayer = game.Players.LocalPlayer
+					local localPlayer = game:GetService("Players").LocalPlayer
 	
 					local nearestPlayer = nil
 					local nearestDistance = math.huge -- Inicializar com um valor muito grande
 	
 					-- Iterar sobre todos os jogadores no jogo
-					for _, player in pairs(game.Players:GetPlayers()) do
+					for _, player in pairs(game:GetService("Players"):GetPlayers()) do
 						if player ~= localPlayer and player.Character and player.Character:FindFirstChild("Head") then
 							local head = player.Character.Head
 							local headScreenPos, isVisible, point = camera:WorldToScreenPoint(head.Position)
@@ -2398,7 +2398,7 @@ local function LIFSHN_fake_script() -- Aimbot.LocalScript
 	
 				-- Atualizar interação do mouse continuamente
 				game:GetService("RunService").RenderStepped:Connect(function()
-					local mouse = game.Players.LocalPlayer:GetMouse()
+					local mouse = game:GetService("Players").LocalPlayer:GetMouse()
 					local mousePosition = Vector2.new(mouse.X, mouse.Y)
 	
 					fovFrame.Position = UDim2.new(0, mousePosition.X - fovSize/2, 0, mousePosition.Y - fovSize/2)
@@ -2564,7 +2564,7 @@ coroutine.wrap(CYPDGIZ_fake_script)()
 local function DBCG_fake_script() -- Slider.LocalScript 
 	local script = Instance.new('LocalScript', Slider)
 
-	local mouse = game.Players.LocalPlayer:GetMouse()
+	local mouse = game:GetService("Players").LocalPlayer:GetMouse()
 	local slider = script.Parent
 	local fill = script.Parent.fill
 	local trigger = slider.Trigger
@@ -2661,7 +2661,7 @@ local function QYPWJLS_fake_script() -- Safe.LocalScript
 		--Properties:
 	
 		mcpipoka.Name = "mcpipoka"
-		mcpipoka.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+		mcpipoka.Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
 	
 		Button.Name = "Button"
 		Button.Parent = mcpipoka
@@ -2722,7 +2722,7 @@ local function QYPWJLS_fake_script() -- Safe.LocalScript
 			local Bolsonaro
 	
 			local function teleportarpara(position)
-				local player = game.Players.LocalPlayer
+				local player = game:GetService("Players").LocalPlayer
 				if player then
 					local character = player.Character
 					if character then
@@ -2735,7 +2735,7 @@ local function QYPWJLS_fake_script() -- Safe.LocalScript
 			end
 	
 			local function teleportar()
-				local player = game.Players.LocalPlayer
+				local player = game:GetService("Players").LocalPlayer
 				if player then
 					local character = player.Character
 					if character then
